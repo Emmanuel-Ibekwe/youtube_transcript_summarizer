@@ -2,13 +2,17 @@ import re
 import spacy
 import pandas as pd
 
-input_file = "../data/youtube_links_with_transcripts.csv"
-output_file = "../data/youtube_links_with_cleaned_transcripts.csv"
+# input_file = "../data/youtube_links_with_transcripts.csv"
+input_file = "../data/youtube_links_with_cleaned_transcripts.csv"
+output_file = "../data/youtube_links_with_recleaned_transcripts.csv"
 
 # Cleaning of text
 def basic_clean_transcript(text):
     # Remove speaker tags 'Speaker 1':', 'John:', etc.
     text = re.sub(r'(Speaker \d+:|[A-Z][a-z]+:)', '', text)
+
+    # Remove non-verbal markers like [Music], [Applause], [Laughter], etc.
+    text = re.sub(r'\[(.*?)\]', '', text)
     
     # Remove common disfluencies/fillers (case-insensitive)
     fillers = r"\b(uh|um|you know|like|i mean|you see|sort of|kind of|you guys|okay|right|actually|basically|literally)\b"
