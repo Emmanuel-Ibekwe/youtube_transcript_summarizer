@@ -4,9 +4,10 @@ import re
 import requests
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 access_token = os.getenv("ACCESS_TOKEN")
+# print(access_token)
 
 
 # Define the CSV file path
